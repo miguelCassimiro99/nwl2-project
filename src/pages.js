@@ -66,23 +66,21 @@ async function saveClasses(req, res) {
         cost: req.body.cost
     }
 
-    const classScheduleValues = req.body.weekday.map(
-        (weekday, index) => {
-
-            return {
-                weekday,
-                time_from: convertHoursToMinutes(req.body.time_from[index]),
-                time_to: convertHoursToMinutes(req.body.time_to[index])
-            }
-        })
+    const classScheduleValues = req.body.weekday.map((weekday, index) => {
+        return {
+            weekday,
+            time_from: convertHoursToMinutes(req.body.time_from[index]),
+            time_to: convertHoursToMinutes(req.body.time_to[index])
+        }
+    })
 
     try {
         const db = await Database;
         await createProffy(db, { proffyValue, classValue, classScheduleValues });
 
         let queryString = "?subject=" + req.body.subject;
-        queryString += "&weekday" + req.body.weekday[0];
-        queryString += "&time" + req.body.time_from[0];
+        queryString += "&weekday=" + req.body.weekday[0];
+        queryString += "&time=" + req.body.time_from[0];
 
         return res.redirect("/study" + queryString);
 
