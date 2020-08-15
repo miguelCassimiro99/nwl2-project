@@ -6,7 +6,7 @@
 
 
 <!-- status -->
-<h4 align="center"> 
+<h4> 
 	On development
 </h4>
 <p> The project open ways to differents kinds of implementations and tests. Besides that, we have some challenges to be complete.</p>
